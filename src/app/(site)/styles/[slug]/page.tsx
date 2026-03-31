@@ -5,9 +5,9 @@ import { client } from "@/sanity/lib/client";
 import { toEmbedUrl } from "@/lib/data";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
 
-async function getMood(slug: string) {
+async function getStyle(slug: string) {
   return client.fetch(
-    `*[_type == "mood" && slug.current == $slug][0] {
+    `*[_type == "style" && slug.current == $slug][0] {
       title, shortDescription, spotifyUrl,
       "slug": slug.current
     }`,
@@ -15,9 +15,9 @@ async function getMood(slug: string) {
   );
 }
 
-async function getOtherMoods(slug: string) {
+async function getOtherStyles(slug: string) {
   return client.fetch(
-    `*[_type == "mood" && slug.current != $slug] | order(_createdAt asc) {
+    `*[_type == "style" && slug.current != $slug] | order(title asc) {
       title, "slug": slug.current
     }`,
     { slug }
@@ -28,32 +28,34 @@ interface Props {
   params: { slug: string };
 }
 
-export default async function MoodDetailPage({ params }: Props) {
-  const mood = await getMood(params.slug);
-  if (!mood) notFound();
+export default async function StyleDetailPage({ params }: Props) {
+  const [style, others] = await Promise.all([
+    getStyle(params.slug),
+    getOtherStyles(params.slug),
+  ]);
+  if (!style) notFound();
 
-  const others = await getOtherMoods(params.slug);
-  const imageSrc = `/images/moods/${mood.slug}.png`;
-  const embedUrl = mood.spotifyUrl ? toEmbedUrl(mood.spotifyUrl) : null;
+  const imageSrc = `/images/styles/${style.slug}.png`;
+  const embedUrl = style.spotifyUrl ? toEmbedUrl(style.spotifyUrl) : null;
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-32 pb-24 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <Link
-            href="/moods"
+            href="/styles"
             className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#F5F4F0]/30 hover:text-[#C8A96E] transition-colors duration-300"
           >
-            ← Moods
+            ← Styles
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
           {/* Left: image */}
-          <div className="aspect-square w-full relative border border-[rgba(245,244,240,0.06)] overflow-hidden bg-[#111]">
+          <div className="aspect-[3/4] w-full relative border border-[rgba(245,244,240,0.06)] overflow-hidden bg-[#111]">
             <Image
               src={imageSrc}
-              alt={mood.title}
+              alt={style.title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -65,15 +67,15 @@ export default async function MoodDetailPage({ params }: Props) {
           <div className="space-y-8">
             <div>
               <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#C8A96E] mb-3">
-                Mood
+                Style
               </p>
               <h1 className="font-playfair text-4xl md:text-5xl text-[#F5F4F0] mb-4">
-                {mood.title}
+                {style.title}
               </h1>
               <div className="w-8 h-[1px] bg-[#C8A96E]/40 mb-6" />
-              {mood.shortDescription && (
+              {style.shortDescription && (
                 <p className="font-dm font-light text-[#F5F4F0]/60 text-base leading-relaxed">
-                  {mood.shortDescription}
+                  {style.shortDescription}
                 </p>
               )}
             </div>
@@ -85,8 +87,8 @@ export default async function MoodDetailPage({ params }: Props) {
                 </p>
                 <SpotifyEmbed
                   embedUrl={embedUrl}
-                  title={mood.title}
-                  externalUrl={mood.spotifyUrl}
+                  title={style.title}
+                  externalUrl={style.spotifyUrl}
                 />
               </div>
             )}
@@ -96,16 +98,16 @@ export default async function MoodDetailPage({ params }: Props) {
         {others.length > 0 && (
           <div className="mt-24 pt-16 border-t border-[rgba(245,244,240,0.08)]">
             <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#F5F4F0]/30 mb-8">
-              Other Moods
+              Other Styles
             </p>
             <div className="flex flex-wrap gap-4">
-              {others.map((m: { slug: string; title: string }) => (
+              {others.map((s: { slug: string; title: string }) => (
                 <Link
-                  key={m.slug}
-                  href={`/moods/${m.slug}`}
+                  key={s.slug}
+                  href={`/styles/${s.slug}`}
                   className="font-playfair text-[#F5F4F0]/40 hover:text-[#C8A96E] transition-colors duration-300 text-lg"
                 >
-                  {m.title}
+                  {s.title}
                 </Link>
               ))}
             </div>

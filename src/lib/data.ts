@@ -1,5 +1,12 @@
 export const SPOTIFY_PLACEHOLDER = "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M";
 
+export function toEmbedUrl(spotifyUrl: string): string {
+  return spotifyUrl
+    .replace("open.spotify.com/playlist/", "open.spotify.com/embed/playlist/")
+    .replace("open.spotify.com/album/", "open.spotify.com/embed/album/")
+    + "?utm_source=generator&theme=0";
+}
+
 export const SPOTIFY_EMBED_PLACEHOLDER =
   "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator&theme=0";
 
@@ -15,6 +22,13 @@ export interface Collection {
   spotifyUrl: string;
   gradient: string;
   image?: string;
+}
+
+export interface Style {
+  title: string;
+  slug: string;
+  shortDescription?: string;
+  spotifyUrl?: string;
 }
 
 export interface Mood {

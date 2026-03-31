@@ -2,16 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
-import { gradientBySlug } from "@/lib/data";
+import { gradientBySlug, toEmbedUrl } from "@/lib/data";
 import SpotifyEmbed from "@/components/SpotifyEmbed";
-
-function toEmbedUrl(spotifyUrl: string): string {
-  // https://open.spotify.com/playlist/ID → https://open.spotify.com/embed/playlist/ID?utm_source=generator&theme=0
-  return spotifyUrl
-    .replace("open.spotify.com/playlist/", "open.spotify.com/embed/playlist/")
-    .replace("open.spotify.com/album/", "open.spotify.com/embed/album/")
-    + "?utm_source=generator&theme=0";
-}
 
 async function getCollection(slug: string) {
   return client.fetch(
@@ -25,7 +17,7 @@ async function getCollection(slug: string) {
 
 async function getOtherCollections(slug: string) {
   return client.fetch(
-    `*[_type == "collection" && slug.current != $slug] | order(year desc) {
+    `*[_type == "collection" && slug.current != $slug] | order(year desc) [0..11] {
       title, year, "slug": slug.current
     }`,
     { slug }
@@ -37,10 +29,11 @@ interface Props {
 }
 
 export default async function CollectionDetailPage({ params }: Props) {
-  const collection = await getCollection(params.slug);
+  const [collection, others] = await Promise.all([
+    getCollection(params.slug),
+    getOtherCollections(params.slug),
+  ]);
   if (!collection) notFound();
-
-  const others = await getOtherCollections(params.slug);
   const gradient = gradientBySlug[collection.slug] ?? "linear-gradient(135deg, #0a0a0a 0%, #0a0a0a 100%)";
   const imageSrc = `/images/collections/${collection.year}.png`;
   const embedUrl = collection.spotifyUrl ? toEmbedUrl(collection.spotifyUrl) : null;
@@ -117,20 +110,31 @@ export default async function CollectionDetailPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Other collections */}
+        {/* Other collections — horizontal thumbnails */}
         {others.length > 0 && (
           <div className="mt-24 pt-16 border-t border-[rgba(245,244,240,0.08)]">
             <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#F5F4F0]/30 mb-8">
               Other Archives
             </p>
-            <div className="flex flex-wrap gap-4">
-              {others.map((c: { slug: string; title: string }) => (
+            <div className="flex gap-4 overflow-x-auto pb-2">
+              {others.map((c: { slug: string; title: string; year: number }) => (
                 <Link
                   key={c.slug}
                   href={`/collections/${c.slug}`}
-                  className="font-playfair text-[#F5F4F0]/40 hover:text-[#C8A96E] transition-colors duration-300 text-lg"
+                  className="group flex-shrink-0 flex flex-col items-center gap-2"
                 >
-                  {c.title}
+                  <div className="relative w-20 h-20 overflow-hidden border border-[rgba(245,244,240,0.06)] group-hover:border-[#C8A96E] transition-colors duration-300">
+                    <Image
+                      src={`/images/collections/${c.year}.png`}
+                      alt={String(c.year)}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="80px"
+                    />
+                  </div>
+                  <span className="font-dm text-[10px] tracking-[0.15em] text-[#F5F4F0]/40 group-hover:text-[#C8A96E] transition-colors duration-300">
+                    {c.year}
+                  </span>
                 </Link>
               ))}
             </div>

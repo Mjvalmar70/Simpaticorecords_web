@@ -43,13 +43,6 @@ export default function Navbar() {
           <NavLink href="/styles">Styles</NavLink>
           <NavLink href="/tapes">Tapes</NavLink>
           <NavLink href="/about">About</NavLink>
-          <Link
-            href="/merch"
-            className="text-sm font-dm font-light tracking-widest uppercase text-[#F5F4F0]/30 hover:text-[#F5F4F0]/50 transition-colors duration-300 flex flex-col items-center leading-none gap-0.5"
-          >
-            Merch
-            <span className="text-[8px] tracking-widest normal-case text-[#F5F4F0]/20">coming soon</span>
-          </Link>
         </div>
       </div>
     </nav>

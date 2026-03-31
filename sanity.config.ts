@@ -27,6 +27,7 @@ export default defineConfig({
             S.divider(),
             S.documentTypeListItem("collection").title("Collections"),
             S.documentTypeListItem("mood").title("Moods"),
+            S.documentTypeListItem("style").title("Styles"),
           ]),
     }),
   ],
