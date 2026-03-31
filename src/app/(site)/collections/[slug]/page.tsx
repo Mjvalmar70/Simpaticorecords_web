@@ -17,7 +17,7 @@ async function getCollection(slug: string) {
 
 async function getOtherCollections(slug: string) {
   return client.fetch(
-    `*[_type == "collection" && slug.current != $slug] | order(year desc) [0..11] {
+    `*[_type == "collection" && slug.current != $slug] | order(year desc) {
       title, year, "slug": slug.current
     }`,
     { slug }
