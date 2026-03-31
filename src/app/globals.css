@@ -7,6 +7,8 @@
   --foreground: #F5F4F0;
   --amber: #C8A96E;
   --divider: rgba(245, 244, 240, 0.08);
+  --font-playfair: "Playfair Display";
+  --font-dm-sans: "DM Sans";
 }
 
 html {
