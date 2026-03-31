@@ -88,7 +88,7 @@ Accent gold: #C8A96E
 
 ## Contenido en Sanity
 
-### Collections (18) — Spotify URLs pendientes
+### Collections (18) ✓ Completo
 2025, 2024, 2023, 2022, 2021, 2020 (featured), 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2008, 2007, 2005
 
 ### Moods (7) ✓ Completo
@@ -177,7 +177,7 @@ Las imágenes se asignan en código por slug/año — no se suben a Sanity.
 ## Pendiente
 
 - [x] Añadir Spotify URLs a los 7 **Moods** en Sanity ✓
-- [ ] Añadir Spotify URLs a las 18 **Collections** en Sanity (pasarme los links)
+- [x] Añadir Spotify URLs a las 18 **Collections** en Sanity ✓
 - [ ] Terminar deploy en **Vercel** (configurar env vars: PROJECT_ID, DATASET, API_VERSION)
 - [ ] Contenido para **Tapes** (cassettes y CDs históricos)
 - [ ] **Merch** (cuando haya contenido)
