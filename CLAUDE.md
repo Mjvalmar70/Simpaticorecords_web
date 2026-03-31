@@ -6,7 +6,8 @@
 - **Styling:** Tailwind CSS
 - **Animations:** Framer Motion
 - **Fonts:** Playfair Display (títulos) + DM Sans (cuerpo, labels, botones)
-- **Deploy:** Vercel (pendiente)
+- **Repo:** https://github.com/Mjvalmar70/Simpaticorecords_web
+- **Deploy:** Vercel (en proceso — env vars pendientes de configurar)
 
 ---
 
@@ -38,15 +39,15 @@ Accent gold: #C8A96E
 ## Arquitectura de rutas
 
 ```
-/                          → Home
-/collections               → Grid de todas las colecciones (desde Sanity)
+/                          → Home (hero + featured collection + grid 6 colecciones)
+/collections               → Grid completo de colecciones (desde Sanity)
 /collections/[slug]        → Detalle de colección con embed Spotify
-/moods                     → Grid de todos los moods (desde Sanity)
+/moods                     → Grid de moods (desde Sanity)
 /moods/[slug]              → Detalle de mood con embed Spotify
-/styles                    → Grid de todos los styles (desde Sanity)
+/styles                    → Grid de 18 estilos (desde Sanity) ✓
+/styles/[slug]             → Detalle de estilo con embed Spotify ✓
 /tapes                     → Placeholder (contenido futuro)
 /about                     → About page
-/merch                     → Placeholder (coming soon)
 /studio                    → Sanity Studio
 ```
 
@@ -62,7 +63,7 @@ Accent gold: #C8A96E
 | year | number | |
 | shortDescription | text | |
 | spotifyUrl | url | URL directa de Spotify |
-| embedCode | text | Embed URL (se genera automáticamente desde spotifyUrl) |
+| embedCode | text | Embed URL (generada desde spotifyUrl con toEmbedUrl()) |
 | featured | boolean | Solo 2020 = true |
 
 ### mood
@@ -71,7 +72,7 @@ Accent gold: #C8A96E
 | title | string | |
 | slug | slug | |
 | shortDescription | text | |
-| spotifyUrl | url | Pendiente de añadir |
+| spotifyUrl | url | **Pendiente de añadir en Sanity** |
 | embedCode | text | |
 
 ### style
@@ -80,17 +81,17 @@ Accent gold: #C8A96E
 | title | string | |
 | slug | slug | |
 | shortDescription | text | |
-| spotifyUrl | url | Pendiente de añadir |
+| spotifyUrl | url | ✓ Añadido en todos |
 | embedCode | text | |
 
 ---
 
 ## Contenido en Sanity
 
-### Collections (18)
+### Collections (18) — Spotify URLs pendientes
 2025, 2024, 2023, 2022, 2021, 2020 (featured), 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2008, 2007, 2005
 
-### Moods (7)
+### Moods (7) — Spotify URLs pendientes
 | Slug | Título |
 |------|--------|
 | electronic-winter | Electronic Winter Mood |
@@ -101,7 +102,7 @@ Accent gold: #C8A96E
 | running | Running |
 | runningmal | Runningmal |
 
-### Styles (18) — Spotify URLs añadidas
+### Styles (18) ✓ Completo
 | Slug | Título | Spotify URL |
 |------|--------|-------------|
 | acid-jazz | Acid Jazz | https://open.spotify.com/playlist/1L0DtnYAMtf5xSVLhOZxXK |
@@ -131,8 +132,8 @@ Todas las imágenes son locales en `/public/images/`:
 
 ```
 /public/images/collections/   → {year}.png  (2005–2025)
-/public/images/moods/         → {slug}.png
-/public/images/styles/        → {slug}.png
+/public/images/moods/         → {slug}.png  (7 moods)
+/public/images/styles/        → {slug}.png  (18 estilos)
 ```
 
 Las imágenes se asignan en código por slug/año — no se suben a Sanity.
@@ -143,7 +144,7 @@ Las imágenes se asignan en código por slug/año — no se suben a Sanity.
 
 ### `HeroCursorTrail`
 - Hero fullscreen con efecto trail al mover el cursor
-- Imágenes del trail: mezcla de collections + moods + styles
+- Imágenes del trail: mezcla de collections + moods + styles (25 imágenes en rotación)
 - Throttle: 320ms, max 4 imágenes en pantalla, fade 1600ms
 - Título y botones se desvanecen al hacer scroll (`useScroll` + `useTransform`)
 - Mobile: grid estático de 3 imágenes
@@ -157,27 +158,30 @@ Las imágenes se asignan en código por slug/año — no se suben a Sanity.
 - Imagen desde `/public/images/moods/{slug}.png`
 
 ### `SpotifyEmbed`
-- Recibe `embedUrl` (generada automáticamente desde `spotifyUrl`)
-- Función `toEmbedUrl`: reemplaza `open.spotify.com/playlist/` por `open.spotify.com/embed/playlist/`
+- Recibe `embedUrl` generada con `toEmbedUrl()` desde `src/lib/data.ts`
+- Convierte `open.spotify.com/playlist/` → `open.spotify.com/embed/playlist/`
+- Soporta también URLs de álbum (`/album/`)
 - Muestra iframe + botón "Open on Spotify ↗"
 
 ---
 
-## Gradientes por colección
+## Utilidades — `src/lib/data.ts`
 
-Definidos en `src/lib/data.ts` → `gradientBySlug`. Cada año tiene un gradiente oscuro único asignado manualmente.
+- `toEmbedUrl(url)` — convierte URL de Spotify a embed URL
+- `gradientBySlug` — mapa de gradientes oscuros por slug de colección
+- Interfaces: `Collection`, `Mood`, `Style`
+- Constantes: `SPOTIFY_PLACEHOLDER`, `SPOTIFY_EMBED_PLACEHOLDER`, `MANIFESTO`
 
 ---
 
 ## Pendiente
 
-- [ ] Añadir Spotify URLs a los 7 **Moods** en Sanity
-- [ ] Añadir Spotify URLs a los 12 **Styles** en Sanity
-- [ ] Página de detalle para Styles (`/styles/[slug]`)
+- [ ] Añadir Spotify URLs a los 7 **Moods** en Sanity (pasarme los links)
+- [ ] Añadir Spotify URLs a las 18 **Collections** en Sanity (pasarme los links)
+- [ ] Terminar deploy en **Vercel** (configurar env vars: PROJECT_ID, DATASET, API_VERSION)
 - [ ] Contenido para **Tapes** (cassettes y CDs históricos)
-- [ ] Deploy en Vercel
-- [ ] Merch (cuando haya contenido)
-- [ ] Página de detalle para Moods — revisar embed con URLs reales
+- [ ] **Merch** (cuando haya contenido)
+- [ ] Página **About**
 
 ---
 
@@ -192,8 +196,19 @@ npm run build
 
 # Limpiar caché y reiniciar (cuando hay errores de módulo)
 rm -rf .next && npm run dev
+
+# Deploy manual a Vercel
+vercel --prod
 ```
 
 ## Git
+- Repo: https://github.com/Mjvalmar70/Simpaticorecords_web
+- Branch principal: `main`
 - Checkpoint pre-refactor UX: `ed0d414`
-- Para volver: `git checkout ed0d414`
+
+## Vercel — Variables de entorno necesarias
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID = zjswviqf
+NEXT_PUBLIC_SANITY_DATASET    = production
+NEXT_PUBLIC_SANITY_API_VERSION = 2024-01-01
+```
