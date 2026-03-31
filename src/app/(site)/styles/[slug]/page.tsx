@@ -100,14 +100,25 @@ export default async function StyleDetailPage({ params }: Props) {
             <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#F5F4F0]/30 mb-8">
               Other Styles
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex gap-4 overflow-x-auto pb-2">
               {others.map((s: { slug: string; title: string }) => (
                 <Link
                   key={s.slug}
                   href={`/styles/${s.slug}`}
-                  className="font-playfair text-[#F5F4F0]/40 hover:text-[#C8A96E] transition-colors duration-300 text-lg"
+                  className="group flex-shrink-0 flex flex-col items-center gap-2"
                 >
-                  {s.title}
+                  <div className="relative w-20 h-20 overflow-hidden border border-[rgba(245,244,240,0.06)] group-hover:border-[#C8A96E] transition-colors duration-300">
+                    <Image
+                      src={`/images/styles/${s.slug}.png`}
+                      alt={s.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="80px"
+                    />
+                  </div>
+                  <span className="font-dm text-[10px] tracking-[0.15em] text-[#F5F4F0]/40 group-hover:text-[#C8A96E] transition-colors duration-300 text-center max-w-[80px] leading-tight">
+                    {s.title}
+                  </span>
                 </Link>
               ))}
             </div>
