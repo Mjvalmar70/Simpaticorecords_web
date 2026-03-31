@@ -91,16 +91,16 @@ Accent gold: #C8A96E
 ### Collections (18) — Spotify URLs pendientes
 2025, 2024, 2023, 2022, 2021, 2020 (featured), 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2008, 2007, 2005
 
-### Moods (7) — Spotify URLs pendientes
-| Slug | Título |
-|------|--------|
-| electronic-winter | Electronic Winter Mood |
-| electronic-autumn | Electronic Autumn Mood |
-| electronic-spring | Electronic Spring Mood |
-| electronic-uptempo-winter | Electronic Uptempo Winter Mood |
-| lazy-electronic-summer | Lazy Electronic Summer Mood |
-| running | Running |
-| runningmal | Runningmal |
+### Moods (7) ✓ Completo
+| Slug | Título | Spotify URL |
+|------|--------|-------------|
+| electronic-winter | Electronic Winter Mood | https://open.spotify.com/playlist/049Jod6fjgM4N4Gv3tbLCo |
+| electronic-autumn | Electronic Autumn Mood | https://open.spotify.com/playlist/4MNVLphofZqfDA0RfMRTT9 |
+| electronic-spring | Electronic Spring Mood | https://open.spotify.com/playlist/7jLSrdFFiBImHjbb5mvZjN |
+| electronic-uptempo-winter | Electronic Uptempo Winter Mood | https://open.spotify.com/playlist/02T9JxWBG4eVXwiIgVEwGi |
+| lazy-electronic-summer | Lazy Electronic Summer Mood | https://open.spotify.com/playlist/1AFwFfcgnYEqIkEs2DlYsX |
+| running | Running | https://open.spotify.com/playlist/26h2BSQWp0G3PBXN1KEWZC |
+| runningmal | Runningmal | https://open.spotify.com/playlist/60nhzjcgzs02LA5dD4Moav |
 
 ### Styles (18) ✓ Completo
 | Slug | Título | Spotify URL |
@@ -176,7 +176,7 @@ Las imágenes se asignan en código por slug/año — no se suben a Sanity.
 
 ## Pendiente
 
-- [ ] Añadir Spotify URLs a los 7 **Moods** en Sanity (pasarme los links)
+- [x] Añadir Spotify URLs a los 7 **Moods** en Sanity ✓
 - [ ] Añadir Spotify URLs a las 18 **Collections** en Sanity (pasarme los links)
 - [ ] Terminar deploy en **Vercel** (configurar env vars: PROJECT_ID, DATASET, API_VERSION)
 - [ ] Contenido para **Tapes** (cassettes y CDs históricos)
