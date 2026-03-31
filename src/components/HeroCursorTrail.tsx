@@ -83,6 +83,14 @@ export default function HeroCursorTrail({ spotifyUrl }: { spotifyUrl: string }) 
   }, []);
 
   useEffect(() => {
+    // Preload first 10 images so trail appears instantly
+    IMAGES.slice(0, 10).forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, []);
+
+  useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
     hero.addEventListener("mousemove", handleMouseMove);
@@ -127,6 +135,7 @@ export default function HeroCursorTrail({ spotifyUrl }: { spotifyUrl: string }) 
                   fill
                   className="object-cover"
                   sizes="220px"
+                  unoptimized
                 />
               </motion.div>
             );
