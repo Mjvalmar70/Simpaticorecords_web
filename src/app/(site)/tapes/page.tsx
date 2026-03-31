@@ -14,17 +14,21 @@ export default function TapesPage() {
         </p>
 
         <div className="mt-16 border border-[rgba(245,244,240,0.06)] p-8 md:p-10 max-w-lg">
-          <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#C8A96E] mb-4">
-            A note
+          <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#C8A96E] mb-6">
+            A note to those who were there
           </p>
-          <p className="font-playfair text-xl text-[#F5F4F0] leading-relaxed mb-6">
-            If you are one of the people I gave a cassette, a CD or any physical mix to — get in touch.
+          <p className="font-playfair text-2xl text-[#F5F4F0] leading-relaxed mb-6">
+            Somewhere out there, one of these is yours.
           </p>
-          <p className="font-dm font-light text-[#F5F4F0]/50 text-sm leading-relaxed mb-6">
-            The archive wants to be complete. Send me the tracklist and the cover and I will make sure it lives here. The mail is coming soon — but it is on its way.
+          <p className="font-dm font-light text-[#F5F4F0]/50 text-sm leading-relaxed mb-4">
+            A cassette. A CD. A handwritten tracklist inside a case you probably still have in a drawer somewhere. I made it for you — and I remember most of them, but not all.
           </p>
-          <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#F5F4F0]/20">
-            Mail coming soon
+          <p className="font-dm font-light text-[#F5F4F0]/50 text-sm leading-relaxed mb-8">
+            If that was you, I want it back. Not the tape — just the memory of it. Write me the tracklist. Send me the cover. Let it live here where it belongs, alongside everything else.
+          </p>
+          <p className="font-dm font-light text-[#F5F4F0]/30 text-sm leading-relaxed">
+            The mail is almost here.{" "}
+            <span className="text-[#C8A96E]/60">Watch this space.</span>
           </p>
         </div>
       </div>
