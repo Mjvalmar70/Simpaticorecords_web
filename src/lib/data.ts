@@ -56,8 +56,11 @@ export const gradientBySlug: Record<string, string> = {
   "archive-2013": "linear-gradient(135deg, #100a10 0%, #0a0a0a 100%)",
   "archive-2012": "linear-gradient(135deg, #0a0a18 0%, #0a0a0a 100%)",
   "archive-2011": "linear-gradient(135deg, #180a0a 0%, #0a0a0a 100%)",
+  "archive-2010": "linear-gradient(135deg, #0a1808 0%, #0a0a0a 100%)",
+  "archive-2009": "linear-gradient(135deg, #08100a 0%, #0a0a0a 100%)",
   "archive-2008": "linear-gradient(135deg, #100a08 0%, #0a0a0a 100%)",
   "archive-2007": "linear-gradient(135deg, #0a0818 0%, #0a0a0a 100%)",
+  "archive-2006": "linear-gradient(135deg, #180a08 0%, #0a0a0a 100%)",
   "archive-2005": "linear-gradient(135deg, #081818 0%, #0a0a0a 100%)",
 };
 
