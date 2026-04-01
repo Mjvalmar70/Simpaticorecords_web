@@ -23,8 +23,8 @@ export async function POST(req: NextRequest) {
 
   // Tag via a notification email so we know the source
   await resend.emails.send({
-    from: "Simpático Records <hello@simpaticorecords.com>",
-    to: "hello@simpaticorecords.com",
+    from: "Simpático Records <onboarding@resend.dev>",
+    to: "mjvalmar70@gmail.com",
     subject: `New subscriber [${tag}]: ${email}`,
     text: `New email signup.\n\nEmail: ${email}\nSource: ${tag}`,
   });

@@ -10,8 +10,8 @@ export async function POST(req: NextRequest) {
   }
 
   const { error } = await resend.emails.send({
-    from: "Simpático Records <hello@simpaticorecords.com>",
-    to: "hello@simpaticorecords.com",
+    from: "Simpático Records <onboarding@resend.dev>",
+    to: "mjvalmar70@gmail.com",
     replyTo: email,
     subject: `Tape submission from ${name}`,
     text: [
