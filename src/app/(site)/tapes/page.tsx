@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function TapesPage() {
   const [form, setForm] = useState({
@@ -35,6 +36,7 @@ export default function TapesPage() {
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
+        <Link href="/archive" className="inline-block font-dm text-[10px] tracking-[0.3em] uppercase text-[#F5F4F0]/25 hover:text-[#C8A96E] transition-colors duration-300 mb-6">← Archive</Link>
         <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#C8A96E] mb-4">
           The Physical Archive
         </p>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CollectionCard from "@/components/CollectionCard";
 import { client } from "@/sanity/lib/client";
 import { gradientBySlug, type Collection } from "@/lib/data";
@@ -24,6 +25,7 @@ export default async function CollectionsPage() {
     <div className="min-h-screen bg-[#0A0A0A] pt-32 pb-24 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
+          <Link href="/archive" className="inline-block font-dm text-[10px] tracking-[0.3em] uppercase text-[#F5F4F0]/25 hover:text-[#C8A96E] transition-colors duration-300 mb-6">← Archive</Link>
           <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#C8A96E] mb-4">
             The Archive
           </p>

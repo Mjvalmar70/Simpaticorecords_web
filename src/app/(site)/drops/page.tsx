@@ -2,21 +2,6 @@
 
 import { useState } from "react";
 
-const cards = [
-  {
-    label: "Weekly Cuts",
-    body: "Five or six tracks. One tight idea. Published when something is worth saying.",
-  },
-  {
-    label: "Monthly Editions",
-    body: "A more considered sequence. A mood, a season, or a theme that deserves more space.",
-  },
-  {
-    label: "The Archive",
-    body: "Every drop eventually feeds the bigger collections. Nothing disappears.",
-  },
-];
-
 export default function DropsPage() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -42,10 +27,9 @@ export default function DropsPage() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] pt-32 pb-24 px-6 md:px-10">
-      <div className="max-w-7xl mx-auto space-y-20">
+      <div className="max-w-2xl mx-auto space-y-20">
 
-        {/* Header */}
-        <section className="max-w-2xl">
+        <section>
           <p className="font-dm text-[10px] tracking-[0.3em] uppercase text-[#C8A96E] mb-4">
             New Releases
           </p>
@@ -53,31 +37,13 @@ export default function DropsPage() {
             Drops
           </h1>
           <div className="mt-6 w-12 h-[1px] bg-[#C8A96E]/40" />
-          <p className="mt-8 font-dm font-light text-[#F5F4F0]/65 text-base md:text-lg leading-relaxed">
+          <p className="mt-8 font-dm font-light text-[#F5F4F0]/60 text-base md:text-lg leading-relaxed">
             A weekly or fortnightly edit. A few tracks, a moment, a reason to
             listen. Smaller than a collection. More precise than a playlist.
           </p>
         </section>
 
-        {/* Cards */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {cards.map((card) => (
-            <article
-              key={card.label}
-              className="border border-[rgba(245,244,240,0.08)] bg-[#0E0E0E] p-7 md:p-8"
-            >
-              <p className="font-dm text-[9px] tracking-[0.3em] uppercase text-[#C8A96E]/70 mb-4">
-                {card.label}
-              </p>
-              <p className="font-dm font-light text-[#F5F4F0]/60 text-sm md:text-base leading-relaxed">
-                {card.body}
-              </p>
-            </article>
-          ))}
-        </section>
-
-        {/* Newsletter */}
-        <section className="border-t border-[rgba(245,244,240,0.08)] pt-16 max-w-2xl">
+        <section className="border-t border-[rgba(245,244,240,0.08)] pt-16">
           <h2 className="font-playfair text-3xl md:text-4xl text-[#F5F4F0] leading-tight mb-4">
             Get the drop.
           </h2>
