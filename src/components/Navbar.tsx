@@ -60,6 +60,8 @@ export default function Navbar() {
             <NavLink href="/collections">Collections</NavLink>
             <NavLink href="/moods">Moods</NavLink>
             <NavLink href="/styles">Styles</NavLink>
+            <NavLink href="/drops">Drops</NavLink>
+            <NavLink href="/merch">Merch</NavLink>
             <NavLink href="/tapes">Tapes</NavLink>
             <NavLink href="/about">About</NavLink>
           </div>
@@ -98,6 +100,8 @@ export default function Navbar() {
         <MobileNavLink href="/collections">Collections</MobileNavLink>
         <MobileNavLink href="/moods">Moods</MobileNavLink>
         <MobileNavLink href="/styles">Styles</MobileNavLink>
+        <MobileNavLink href="/drops">Drops</MobileNavLink>
+        <MobileNavLink href="/merch">Merch</MobileNavLink>
         <MobileNavLink href="/tapes">Tapes</MobileNavLink>
         <MobileNavLink href="/about">About</MobileNavLink>
       </div>

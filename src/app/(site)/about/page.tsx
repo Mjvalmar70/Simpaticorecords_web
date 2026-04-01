@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { contactEmailHref, siteContact } from "@/lib/site";
 
 export default function AboutPage() {
   return (
@@ -81,13 +82,13 @@ export default function AboutPage() {
               </p>
               <div className="flex flex-col gap-2">
                 <a
-                  href="mailto:hello@simpaticorecords.com"
+                  href={contactEmailHref}
                   className="font-dm text-sm text-[#F5F4F0]/50 hover:text-[#C8A96E] transition-colors duration-300"
                 >
-                  hello@simpaticorecords.com
+                  {siteContact.email}
                 </a>
                 <a
-                  href="https://instagram.com/simpaticorecords"
+                  href={siteContact.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-dm text-sm text-[#F5F4F0]/50 hover:text-[#C8A96E] transition-colors duration-300"

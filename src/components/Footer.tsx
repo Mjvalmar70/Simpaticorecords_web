@@ -1,3 +1,5 @@
+import { contactEmailHref, siteContact } from "@/lib/site";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -10,7 +12,7 @@ export default function Footer() {
 
         <div className="flex items-center gap-6 text-xs font-dm font-light tracking-widest uppercase text-[#F5F4F0]/40">
           <a
-            href="https://instagram.com/simpaticorecords"
+            href={siteContact.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#C8A96E] transition-colors duration-300"
@@ -18,7 +20,7 @@ export default function Footer() {
             Instagram
           </a>
           <a
-            href="https://open.spotify.com/user/simpaticorecords"
+            href={siteContact.spotifyProfileUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-[#C8A96E] transition-colors duration-300"
@@ -26,10 +28,10 @@ export default function Footer() {
             Spotify
           </a>
           <a
-            href="mailto:hello@simpaticorecords.com"
+            href={contactEmailHref}
             className="hover:text-[#C8A96E] transition-colors duration-300"
           >
-            hello@simpaticorecords.com
+            {siteContact.email}
           </a>
         </div>
       </div>
